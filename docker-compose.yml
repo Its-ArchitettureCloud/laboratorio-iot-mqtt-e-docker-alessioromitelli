@@ -7,3 +7,14 @@ services:
       - "1883:1883"
     volumes:
       - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  sensor:
+    build: ./sensor
+    container_name: sensor-01
+    environment:
+      MQTT_BROKER: mosquitto
+      MQTT_PORT: 1883
+      SENSOR_ID: sensore01
+      SEND_INTERVAL: 5
+    depends_on:
+      - mosquitto    

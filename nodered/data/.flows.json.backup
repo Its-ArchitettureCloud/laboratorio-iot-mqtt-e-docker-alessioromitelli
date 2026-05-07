@@ -39,6 +39,95 @@
         "sessionExpiry": ""
     },
     {
+        "id": "36f6d1489429a150",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "d7197c61b8b4f27c",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "692f515cf14cb45d",
+        "type": "ui-page",
+        "name": "IoTMonitoring",
+        "ui": "36f6d1489429a150",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "d7197c61b8b4f27c",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "686e4784d8f57b4c",
+        "type": "ui-group",
+        "name": "Aula",
+        "page": "692f515cf14cb45d",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
         "id": "5f96f6f2af999629",
         "type": "mqtt in",
         "z": "a51b24c8794510eb",
@@ -55,7 +144,9 @@
         "y": 360,
         "wires": [
             [
-                "f04c59984eded86b"
+                "f04c59984eded86b",
+                "1f9212cb6894f418",
+                "77da5fe687a90448"
             ]
         ]
     },
@@ -73,6 +164,122 @@
         "statusType": "auto",
         "x": 320,
         "y": 460,
+        "wires": []
+    },
+    {
+        "id": "1f9212cb6894f418",
+        "type": "ui-gauge",
+        "z": "a51b24c8794510eb",
+        "name": "",
+        "group": "686e4784d8f57b4c",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 730,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "77da5fe687a90448",
+        "type": "switch",
+        "z": "a51b24c8794510eb",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "30",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 360,
+        "wires": [
+            [
+                "ee943a745a88807b"
+            ]
+        ]
+    },
+    {
+        "id": "ee943a745a88807b",
+        "type": "function",
+        "z": "a51b24c8794510eb",
+        "name": "Testo Email",
+        "func": "msg.payload = `ATTENZIONE\nTemperatura elevata rilevata!\nValore: ${msg.payload} °C\nSensore: ${msg.topic}\nSistema IoT - Laboratorio ITS`;\nmsg.from = \"no-reply@nodered.local\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 360,
+        "wires": [
+            [
+                "8198ead9ee1149bb"
+            ]
+        ]
+    },
+    {
+        "id": "8198ead9ee1149bb",
+        "type": "e-mail",
+        "z": "a51b24c8794510eb",
+        "server": "mailhog",
+        "port": "1025",
+        "authtype": "NONE",
+        "saslformat": true,
+        "token": "oauth2Response.access_token",
+        "secure": true,
+        "tls": false,
+        "name": "alert@iot.local",
+        "dname": "Allarme temperatura elevata",
+        "x": 1180,
+        "y": 360,
         "wires": []
     }
 ]

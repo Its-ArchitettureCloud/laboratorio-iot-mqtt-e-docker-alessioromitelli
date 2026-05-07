@@ -145,7 +145,8 @@
         "wires": [
             [
                 "f04c59984eded86b",
-                "1f9212cb6894f418"
+                "1f9212cb6894f418",
+                "77da5fe687a90448"
             ]
         ]
     },
@@ -213,10 +214,72 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 490,
-        "y": 360,
+        "x": 730,
+        "y": 220,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "77da5fe687a90448",
+        "type": "switch",
+        "z": "a51b24c8794510eb",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "30",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 360,
+        "wires": [
+            [
+                "ee943a745a88807b"
+            ]
+        ]
+    },
+    {
+        "id": "ee943a745a88807b",
+        "type": "function",
+        "z": "a51b24c8794510eb",
+        "name": "Testo Email",
+        "func": "msg.payload = `ATTENZIONE\nTemperatura elevata rilevata!\nValore: ${msg.payload} °C\nSensore: ${msg.topic}\nSistema IoT - Laboratorio ITS`;\nmsg.from = \"no-reply@nodered.local\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 360,
+        "wires": [
+            [
+                "8198ead9ee1149bb"
+            ]
+        ]
+    },
+    {
+        "id": "8198ead9ee1149bb",
+        "type": "e-mail",
+        "z": "a51b24c8794510eb",
+        "server": "mailhog",
+        "port": "1025",
+        "authtype": "NONE",
+        "saslformat": true,
+        "token": "oauth2Response.access_token",
+        "secure": false,
+        "tls": false,
+        "name": "alert@iot.local",
+        "dname": "Allarme temperatura elevata",
+        "x": 1180,
+        "y": 360,
+        "wires": []
     }
 ]

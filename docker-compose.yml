@@ -18,3 +18,13 @@ services:
       SEND_INTERVAL: 5
     depends_on:
       - mosquitto    
+
+  nodered:
+    image: nodered/node-red:latest
+    container_name: node-red
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./nodered/data:/data
+    depends_on:
+      - mosquitto    

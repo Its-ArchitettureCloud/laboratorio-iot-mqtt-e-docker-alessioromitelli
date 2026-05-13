@@ -1,1 +1,107 @@
+version: "3.9"
 
+x-env-common: &sensor-template-env
+  MQTT_BROKER: mosquitto
+  MQTT_PORT: 1883
+  SEND_INTERVAL: 5
+
+x-sensor-base: &sensor-template
+  build: ./sensor
+  depends_on:
+    - mosquitto
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mqtt-broker
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  sensor01:
+    <<: *sensor-template
+    container_name: sensor-01
+    environment:
+      <<: *sensor-template-env
+      SENSOR_ID: sensor01
+
+  sensor02:
+    <<: *sensor-template
+    container_name: sensor-02
+    environment:
+      <<: *sensor-template-env
+      SENSOR_ID: sensor02
+
+  sensor03:
+    <<: *sensor-template
+    container_name: sensor-03
+    environment:
+      <<: *sensor-template-env
+      SENSOR_ID: sensor03
+
+  sensor04:
+    <<: *sensor-template
+    container_name: sensor-04
+    environment:
+      <<: *sensor-template-env
+      SENSOR_ID: sensor04
+
+  sensor05:
+    <<: *sensor-template
+    container_name: sensor-05
+    environment:
+      <<: *sensor-template-env
+      SENSOR_ID: sensor05
+
+  sensor06:
+    <<: *sensor-template
+    container_name: sensor-06
+    environment:
+      <<: *sensor-template-env
+      SENSOR_ID: sensor06
+
+  sensor07:
+    <<: *sensor-template
+    container_name: sensor-07
+    environment:
+      <<: *sensor-template-env
+      SENSOR_ID: sensor07
+
+  sensor08:
+    <<: *sensor-template
+    container_name: sensor-08
+    environment:
+      <<: *sensor-template-env
+      SENSOR_ID: sensor08
+
+  sensor09:
+    <<: *sensor-template
+    container_name: sensor-09
+    environment:
+      <<: *sensor-template-env
+      SENSOR_ID: sensor09
+
+  sensor10:
+    <<: *sensor-template
+    container_name: sensor-10
+    environment:
+      <<: *sensor-template-env
+      SENSOR_ID: sensor10
+
+  nodered:
+    image: nodered/node-red:latest
+    container_name: node-red
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./nodered/data:/data
+    depends_on:
+      - mosquitto    
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    container_name: mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"

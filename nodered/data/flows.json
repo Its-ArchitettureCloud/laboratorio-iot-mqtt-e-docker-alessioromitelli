@@ -145,8 +145,8 @@
         "wires": [
             [
                 "f04c59984eded86b",
-                "1f9212cb6894f418",
-                "77da5fe687a90448"
+                "77da5fe687a90448",
+                "f3c0688f72b39aa1"
             ]
         ]
     },
@@ -157,12 +157,13 @@
         "name": "debug 1",
         "active": true,
         "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
         "statusType": "auto",
-        "x": 320,
+        "x": 330,
         "y": 460,
         "wires": []
     },
@@ -170,7 +171,7 @@
         "id": "1f9212cb6894f418",
         "type": "ui-gauge",
         "z": "a51b24c8794510eb",
-        "name": "",
+        "name": "sensore01",
         "group": "686e4784d8f57b4c",
         "order": 1,
         "value": "payload",
@@ -214,8 +215,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 730,
-        "y": 220,
+        "x": 650,
+        "y": 20,
         "wires": [
             []
         ]
@@ -238,7 +239,7 @@
         "repair": false,
         "outputs": 1,
         "x": 510,
-        "y": 360,
+        "y": 480,
         "wires": [
             [
                 "ee943a745a88807b"
@@ -258,7 +259,7 @@
         "finalize": "",
         "libs": [],
         "x": 890,
-        "y": 360,
+        "y": 440,
         "wires": [
             [
                 "8198ead9ee1149bb"
@@ -281,5 +282,588 @@
         "x": 1180,
         "y": 360,
         "wires": []
+    },
+    {
+        "id": "f3c0688f72b39aa1",
+        "type": "switch",
+        "z": "a51b24c8794510eb",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "iot/aula/sensor01/temperatura",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "iot/aula/sensor02/temperatura",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "iot/aula/sensor03/temperatura",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "iot/aula/sensor04/temperatura",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "iot/aula/sensor05/temperatura",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "iot/aula/sensor06/temperatura",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "iot/aula/sensor07/temperatura",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "iot/aula/sensor08/temperatura",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "iot/aula/sensor09/temperatura",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "iot/aula/sensor10/temperatura",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 10,
+        "x": 390,
+        "y": 140,
+        "wires": [
+            [
+                "1f9212cb6894f418"
+            ],
+            [
+                "c8d3625b476c838d"
+            ],
+            [
+                "5943ccfbda4b0869"
+            ],
+            [
+                "6cfddb945cf8e48a"
+            ],
+            [
+                "87dd6b3380983a5c"
+            ],
+            [
+                "ab6acf17940cafe3"
+            ],
+            [
+                "3aa961450b5c7533"
+            ],
+            [
+                "fb0e1b11ab7e9b75"
+            ],
+            [
+                "d7bf128a33fb28ce"
+            ],
+            [
+                "df68bada729d53b6"
+            ]
+        ]
+    },
+    {
+        "id": "5943ccfbda4b0869",
+        "type": "ui-gauge",
+        "z": "a51b24c8794510eb",
+        "name": "sensore03",
+        "group": "686e4784d8f57b4c",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c8d3625b476c838d",
+        "type": "ui-gauge",
+        "z": "a51b24c8794510eb",
+        "name": "sensore02",
+        "group": "686e4784d8f57b4c",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6cfddb945cf8e48a",
+        "type": "ui-gauge",
+        "z": "a51b24c8794510eb",
+        "name": "sensore04",
+        "group": "686e4784d8f57b4c",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87dd6b3380983a5c",
+        "type": "ui-gauge",
+        "z": "a51b24c8794510eb",
+        "name": "sensore05",
+        "group": "686e4784d8f57b4c",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ab6acf17940cafe3",
+        "type": "ui-gauge",
+        "z": "a51b24c8794510eb",
+        "name": "sensore06",
+        "group": "686e4784d8f57b4c",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3aa961450b5c7533",
+        "type": "ui-gauge",
+        "z": "a51b24c8794510eb",
+        "name": "sensore07",
+        "group": "686e4784d8f57b4c",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fb0e1b11ab7e9b75",
+        "type": "ui-gauge",
+        "z": "a51b24c8794510eb",
+        "name": "sensore08",
+        "group": "686e4784d8f57b4c",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d7bf128a33fb28ce",
+        "type": "ui-gauge",
+        "z": "a51b24c8794510eb",
+        "name": "sensore09",
+        "group": "686e4784d8f57b4c",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "df68bada729d53b6",
+        "type": "ui-gauge",
+        "z": "a51b24c8794510eb",
+        "name": "sensore10",
+        "group": "686e4784d8f57b4c",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 380,
+        "wires": [
+            []
+        ]
     }
 ]
